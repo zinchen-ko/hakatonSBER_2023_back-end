@@ -1,16 +1,16 @@
 package com.example.hakatonsber_2023_backend.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
-@Table(name="account",
-        uniqueConstraints = {
-                @UniqueConstraint(columnNames = "username")
-        })
+@Table(name="account")
+@NoArgsConstructor
 public class Account {
 
     @Id
@@ -27,4 +27,12 @@ public class Account {
     private String ogrn;
 
     private String ulAddress;
+
+    public Account(String name, String address, String inn, String ogrn, String ulAddress) {
+        this.name = name;
+        this.address = address;
+        this.inn = inn;
+        this.ogrn = ogrn;
+        this.ulAddress = ulAddress;
+    }
 }

@@ -2,15 +2,14 @@ package com.example.hakatonsber_2023_backend.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
-@Table(name="department",
-        uniqueConstraints = {
-                @UniqueConstraint(columnNames = "username")
-        })
+@Table(name="department")
+@NoArgsConstructor
 public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,5 +30,11 @@ public class Department {
 
     private String maxCountOfWorkers;
 
-
+    public Department(String name, Account account, String countOfWorkers, DepartmentType departmentType, String maxCountOfWorkers) {
+        this.name = name;
+        this.account = account;
+        this.countOfWorkers = countOfWorkers;
+        this.departmentType = departmentType;
+        this.maxCountOfWorkers = maxCountOfWorkers;
+    }
 }

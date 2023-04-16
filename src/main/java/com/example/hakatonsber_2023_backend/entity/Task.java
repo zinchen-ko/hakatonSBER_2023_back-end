@@ -1,7 +1,10 @@
 package com.example.hakatonsber_2023_backend.entity;
 
+import com.example.hakatonsber_2023_backend.controllers.ResponseController;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
@@ -9,10 +12,8 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-@Table(name="task",
-        uniqueConstraints = {
-                @UniqueConstraint(columnNames = "username")
-        })
+@Table(name="task")
+@NoArgsConstructor
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,16 +27,18 @@ public class Task {
     private Date endDate;
 
     @OneToOne
-    @JoinColumn(name = "task_type_id")
-    private TaskType taskType;
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
 
-    @OneToOne
-    @JoinColumn(name = "employee_from_id")
-    private Employee employeeFrom;
+    @ManyToOne
+    @JoinColumn(name = "response_id")
+    private Response response;
 
-    @OneToOne
-    @JoinColumn(name = "employee_to_id")
-    private Employee employeeTo;
-
-    private Long toId;
+    public Task(String text, Date startDate, Date endDate, Employee employee, Response response) {
+        this.text = text;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.employee = employee;
+        this.response = response;
+    }
 }

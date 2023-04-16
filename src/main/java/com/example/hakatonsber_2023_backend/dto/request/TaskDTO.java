@@ -1,4 +1,4 @@
-package com.example.hakatonsber_2023_backend.dto;
+package com.example.hakatonsber_2023_backend.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

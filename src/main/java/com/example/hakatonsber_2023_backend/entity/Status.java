@@ -2,15 +2,14 @@ package com.example.hakatonsber_2023_backend.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
-@Table(name="status",
-        uniqueConstraints = {
-                @UniqueConstraint(columnNames = "username")
-        })
+@Table(name="status")
+@NoArgsConstructor
 public class Status {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,4 +17,8 @@ public class Status {
     private Long id;
 
     private String status;
+
+    public Status(String status) {
+        this.status = status;
+    }
 }
