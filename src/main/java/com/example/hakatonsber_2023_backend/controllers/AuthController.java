@@ -1,14 +1,11 @@
-package project.controllers;
+package com.example.hakatonsber_2023_backend.controllers;
 
-import project.pojo.request.AuthRequest;
-import project.services.auth.UserService;
+
+import com.example.hakatonsber_2023_backend.dto.request.AuthRequest;
+import com.example.hakatonsber_2023_backend.services.auth.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
-import org.springframework.validation.annotation.Validated;
+
 import org.springframework.web.bind.annotation.*;
 
 @RestController

@@ -1,4 +1,4 @@
-package project.services.auth;
+package com.example.hakatonsber_2023_backend.services.auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;

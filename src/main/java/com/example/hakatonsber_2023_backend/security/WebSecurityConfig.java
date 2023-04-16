@@ -1,4 +1,4 @@
-package project.security;
+package com.example.hakatonsber_2023_backend.security;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,23 +14,20 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import project.security.jwt.AuthEntryPointJwt;
-import project.security.jwt.AuthTokenFilter;
-import project.services.auth.UserDetailsImplService;
+import com.example.hakatonsber_2023_backend.services.auth.UserDetailsImplService;
 
 import javax.servlet.Filter;
-
 
 @EnableWebSecurity
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
     @Autowired
     private UserDetailsImplService userDetailsImplService;
 
     @Autowired
     private AuthEntryPointJwt authEntryPointJwt;
+
 
     @Bean
     public AuthTokenFilter authenticationJwtTokenFilter() {
@@ -64,6 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/web-lab4/api/entries/**").authenticated()
                 .anyRequest().authenticated();
 
-        http.addFilterBefore( authenticationJwtTokenFilter(), (Class<? extends Filter>) UsernamePasswordAuthenticationFilter.class);
+
+        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 }

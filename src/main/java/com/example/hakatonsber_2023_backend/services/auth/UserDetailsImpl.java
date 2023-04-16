@@ -1,6 +1,5 @@
-package project.services.auth;
+package com.example.hakatonsber_2023_backend.services.auth;
 
-import project.entities.UserEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

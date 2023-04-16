@@ -1,4 +1,4 @@
-package project.security.jwt;
+package com.example.hakatonsber_2023_backend.security.jwt;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
-import project.services.auth.UserDetailsImplService;
+import com.example.hakatonsber_2023_backend.services.auth.UserDetailsImplService;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterConfig;

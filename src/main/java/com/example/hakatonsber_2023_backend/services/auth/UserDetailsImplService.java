@@ -1,7 +1,7 @@
-package project.services.auth;
+package com.example.hakatonsber_2023_backend.services.auth;
 
-import project.entities.UserEntity;
-import project.repositories.UserRepository;
+
+import com.example.hakatonsber_2023_backend.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

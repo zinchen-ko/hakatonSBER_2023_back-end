@@ -1,9 +1,9 @@
-package project.security.jwt;
+package com.example.hakatonsber_2023_backend.security.jwt;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
-import project.services.auth.UserDetailsImpl;
+import com.example.hakatonsber_2023_backend.services.auth.UserDetailsImpl;
 
 import java.util.Date;
 

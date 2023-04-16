@@ -1,4 +1,4 @@
-package project.security.jwt;
+package com.example.hakatonsber_2023_backend.security.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
