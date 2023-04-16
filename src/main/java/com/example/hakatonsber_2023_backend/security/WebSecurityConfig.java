@@ -59,6 +59,7 @@ public class WebSecurityConfig {
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/response/**").authenticated()
                         .requestMatchers("/todo/**").authenticated()
+                        .requestMatchers("/v3/api-docs/**").permitAll()
                         .anyRequest().denyAll()
                 )
                 .httpBasic(withDefaults());
