@@ -1,5 +1,6 @@
 package com.example.hakatonsber_2023_backend.security.jwt;
 
+import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,11 +13,6 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 import com.example.hakatonsber_2023_backend.services.auth.UserDetailsImplService;
-
-import javax.servlet.Filter;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import java.io.IOException;
 
 public class AuthTokenFilter extends OncePerRequestFilter implements Filter {
@@ -56,13 +52,4 @@ public class AuthTokenFilter extends OncePerRequestFilter implements Filter {
         return null;
     }
 
-    @Override
-    public void init(FilterConfig filterConfig) throws javax.servlet.ServletException {
-        Filter.super.init(filterConfig);
-    }
-
-    @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, javax.servlet.FilterChain filterChain) throws IOException, javax.servlet.ServletException {
-
-    }
 }

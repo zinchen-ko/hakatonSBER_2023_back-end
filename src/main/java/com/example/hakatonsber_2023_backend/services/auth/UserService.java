@@ -1,26 +1,26 @@
 package com.example.hakatonsber_2023_backend.services.auth;
 
+import com.example.hakatonsber_2023_backend.dto.request.AuthRequest;
+import com.example.hakatonsber_2023_backend.dto.response.JwtResponse;
+import com.example.hakatonsber_2023_backend.dto.response.MessageResponse;
+import com.example.hakatonsber_2023_backend.entity.User;
+import com.example.hakatonsber_2023_backend.repositories.UserRepository;
+import com.example.hakatonsber_2023_backend.security.jwt.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import project.entities.UserEntity;
-import project.pojo.request.AuthRequest;
-import project.pojo.response.JwtResponse;
-import project.pojo.response.MessageResponse;
-import project.repositories.UserRepository;
-import project.security.jwt.JwtUtils;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 public class UserService {
+
     @Autowired
     private AuthenticationManager authenticationManager;
 
@@ -33,19 +33,15 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public UserEntity getUserByUsername(String username){
-        return userRepository.findByUsername(username).get();
-    }
-
     public MessageResponse register(AuthRequest authRequest) {
 
         if(userRepository.existsByUsername(authRequest.getUsername())) {
-            return new MessageResponse("Error");
+            return new MessageResponse("Auth Error, User already exist", 405);
         } else {
-            UserEntity user = new UserEntity(authRequest.getUsername(),
+            User user = new User(authRequest.getUsername(),
                     passwordEncoder.encode(authRequest.getPassword()));
             userRepository.save(user);
-            return new MessageResponse("Okay");
+            return new MessageResponse("Okay", 200);
         }
     }
 

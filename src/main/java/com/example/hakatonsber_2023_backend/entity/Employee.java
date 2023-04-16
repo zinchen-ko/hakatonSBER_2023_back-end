@@ -26,15 +26,15 @@ public class Employee {
 
     private String phone;
 
-    @OneToOne
-    @JoinColumn(name = "department_id")
-    private Department department;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "account_id")
+    private Account account;
 
-    public Employee(String name, String surname, String patronymic, String phone, Department department) {
+    public Employee(String name, String surname, String patronymic, String phone, Account account) {
         this.name = name;
         this.surname = surname;
         this.patronymic = patronymic;
         this.phone = phone;
-        this.department = department;
+        this.account = account;
     }
 }

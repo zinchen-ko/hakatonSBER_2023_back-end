@@ -1,6 +1,7 @@
 package com.example.hakatonsber_2023_backend.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,28 +9,28 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name="department")
+@Table(name="settings")
 @NoArgsConstructor
-public class Department {
+public class Settings {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    private String name;
+    @OneToOne
+    @JoinColumn(name = "status_id")
+    private Status status;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "account_id")
     private Account account;
 
-    private int countOfWorkers;
+    private String text;
 
-    private int maxCountOfWorkers;
-
-    public Department(String name, Account account, int countOfWorkers, int maxCountOfWorkers) {
-        this.name = name;
+    public Settings(Status status, Account account, String text) {
+        this.status = status;
         this.account = account;
-        this.countOfWorkers = countOfWorkers;
-        this.maxCountOfWorkers = maxCountOfWorkers;
+        this.text = text;
     }
 }

@@ -26,11 +26,11 @@ public class Task {
 
     private Date endDate;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "response_id")
     private Response response;
 

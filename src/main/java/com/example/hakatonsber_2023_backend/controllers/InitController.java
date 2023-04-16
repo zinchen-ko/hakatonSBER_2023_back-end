@@ -2,7 +2,6 @@ package com.example.hakatonsber_2023_backend.controllers;
 
 
 import com.example.hakatonsber_2023_backend.dto.request.AuthRequest;
-import com.example.hakatonsber_2023_backend.dto.response.MessageResponse;
 import com.example.hakatonsber_2023_backend.repositories.TaskRepository;
 import com.example.hakatonsber_2023_backend.services.ResponseService;
 import com.example.hakatonsber_2023_backend.services.TaskService;
@@ -14,12 +13,10 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/init")
 @CrossOrigin(origins = "*", maxAge = 3600)
-public class AuthController {
+public class InitController {
 
-    @Autowired
-    private UserService userService;
 
     @Autowired
     private ResponseService responseService;
@@ -27,21 +24,9 @@ public class AuthController {
     @Autowired
     private TaskService taskService;
 
-    @PostMapping("/register")
-    public MessageResponse register(@RequestBody AuthRequest user) {
-        return userService.register(user);
+    @GetMapping("do")
+    public void init() {
+        responseService.init();
     }
 
-
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody AuthRequest user) {
-        try {
-
-            return ResponseEntity.ok(userService.login(user));
-        } catch (BadCredentialsException e){
-            return ResponseEntity.badRequest().body("Wrong login or password");
-        } catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-    }
 }

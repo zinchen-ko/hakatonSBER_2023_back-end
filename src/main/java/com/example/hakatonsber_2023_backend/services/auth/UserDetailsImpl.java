@@ -1,5 +1,6 @@
 package com.example.hakatonsber_2023_backend.services.auth;
 
+import com.example.hakatonsber_2023_backend.entity.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,8 +22,8 @@ public class UserDetailsImpl implements UserDetails {
         this.password = password;
     }
 
-    public static UserDetailsImpl build(UserEntity user){
-        return new UserDetailsImpl(user.getAccount_id(),user.getUsername(),user.getPassword());
+    public static UserDetailsImpl build(User user){
+        return new UserDetailsImpl(user.getId(),user.getUsername(),user.getPassword());
     }
 
     @Override

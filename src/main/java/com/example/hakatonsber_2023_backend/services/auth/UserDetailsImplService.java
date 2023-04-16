@@ -1,6 +1,7 @@
 package com.example.hakatonsber_2023_backend.services.auth;
 
 
+import com.example.hakatonsber_2023_backend.entity.User;
 import com.example.hakatonsber_2023_backend.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,7 +17,7 @@ public class UserDetailsImplService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserEntity user = userRepository.findByUsername(username)
+        User user = userRepository.findByUsername(username)
                 .orElseThrow(()->new UsernameNotFoundException("User not found with username: "+username));
         return UserDetailsImpl.build(user);
     }

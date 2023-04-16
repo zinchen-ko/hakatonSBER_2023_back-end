@@ -7,6 +7,8 @@ import com.example.hakatonsber_2023_backend.services.auth.UserDetailsImplService
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -21,6 +23,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity
 @Configuration
 public class WebSecurityConfig {
+
     @Autowired
     private UserDetailsImplService userDetailsImplService;
 
@@ -28,6 +31,11 @@ public class WebSecurityConfig {
     private AuthEntryPointJwt authEntryPointJwt;
 
 
+    @Bean
+    public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
+        return http.getSharedObject(AuthenticationManagerBuilder.class)
+                .build();
+    }
     @Bean
     public AuthTokenFilter authenticationJwtTokenFilter() {
         return new AuthTokenFilter();
@@ -47,9 +55,10 @@ public class WebSecurityConfig {
                 .exceptionHandling().authenticationEntryPoint(authEntryPointJwt).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/web-lab4/api/auth/**").permitAll()
-                        .requestMatchers("/web-lab4/api/entries/**").authenticated()
-
+                        .requestMatchers("/init/**").permitAll()
+                        .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/response/**").authenticated()
+                        .requestMatchers("/todo/**").authenticated()
                         .anyRequest().denyAll()
                 )
                 .httpBasic(withDefaults());

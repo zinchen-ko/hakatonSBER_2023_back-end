@@ -18,21 +18,9 @@ public class Account {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    private String name;
+    private String city;
 
-    private String address;
-
-    private String inn;
-
-    private String ogrn;
-
-    private String ulAddress;
-
-    public Account(String name, String address, String inn, String ogrn, String ulAddress) {
-        this.name = name;
-        this.address = address;
-        this.inn = inn;
-        this.ogrn = ogrn;
-        this.ulAddress = ulAddress;
+    public Account(String city) {
+        this.city=city;
     }
 }

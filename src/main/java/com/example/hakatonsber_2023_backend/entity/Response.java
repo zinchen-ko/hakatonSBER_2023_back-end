@@ -23,15 +23,15 @@ public class Response {
 
     private Date date;
 
-    @OneToOne
-    @JoinColumn(name = "client_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "employee")
     private Employee employee;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "department_id")
     private Department department;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "status_id")
     private Status status;
 
